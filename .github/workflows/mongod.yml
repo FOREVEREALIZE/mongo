@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Builder
+name: Build Mongo Database Server
 
 # Controls when the workflow will run
 on:
@@ -26,3 +26,20 @@ jobs:
         
       - name: Install libcurl4-openssl-dev
         run: sudo apt install libcurl4-openssl-dev -y
+      
+      - name: Setup Python
+        uses: actions/setup-python@v2.3.1
+        with:
+          python-version: 3.7
+          
+      - name: Setup PIP
+        run: sudo apt install python3-pip -y
+        
+      - name: Setup OpenSSL C Headers
+        run: sudo apt install python-dev-is-python3 libssl-dev -y
+        
+      - name: Install PIP Requirements
+        run: python3 -m pip install -r etc/pip/compile-requirements.txt
+        
+      - name: Build Mongo Database Server
+        run: python3 buildscripts/scons.py install-mongod --disable-warnings-as-errors
