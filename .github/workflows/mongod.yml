@@ -40,6 +40,9 @@ jobs:
         
       - name: Install PIP Requirements
         run: python3 -m pip install -r etc/pip/compile-requirements.txt
+      
+      - name: Install Build Essentials
+        run: sudo apt-get install build-essential -y
         
       - name: Build Mongo Database Server
         run: python3 buildscripts/scons.py install-mongod --disable-warnings-as-errors
