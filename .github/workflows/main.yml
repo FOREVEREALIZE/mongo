@@ -20,9 +20,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        
-      - name: Ls Cuz I Do Not Understand The Docs
-        run: ls
       
       - name: Install GCC
         uses: egor-tensin/setup-gcc@v1
+        
+      - name: Install libcurl4-openssl-dev
+        run: sudo apt install libcurl4-openssl-dev -y
